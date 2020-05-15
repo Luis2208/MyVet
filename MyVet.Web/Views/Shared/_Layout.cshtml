@@ -8,6 +8,7 @@
         <environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            
         </environment>
         <environment exclude="Development">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -16,19 +17,14 @@
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         </environment>
         <style>
-            .color {
-                /*background: #ffffff;*/
-            }
-            #color {
-                background: #000000;
-            }
+           
         </style>
     </head>
     <body>
         <header>
             <img />
         </header>
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="color">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,13 +37,31 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="color"><a  asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li class="color"><a  asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li class="color"><a  asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                        <li class="color"><a  asp-area="" asp-controller="Owners" asp-action="Index">Clientes</a></li>
-                        <li class="color"><a  asp-area="" asp-controller="Managers" asp-action="Index">Administrador</a></li>
-                        <li class="color"><a  asp-area="" asp-controller="Agenda" asp-action="Index">Agenda</a></li>
+                        <li class="color"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="color"><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li class="color"><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="color"><a asp-area="" asp-controller="Owners" asp-action="Index">Clientes</a></li>
+                            <li class="color"><a asp-area="" asp-controller="Managers" asp-action="Index">Administrador</a></li>
+                            <li class="color"><a asp-area="" asp-controller="Agenda" asp-action="Index">Agenda</a></li>
+                            <li class="color"><a asp-area="" asp-controller="PetTypes" asp-action="Index">Tipos de Mascotas</a></li>
+                            <li class="color"><a asp-area="" asp-controller="ServiceTypes" asp-action="Index">Servicios</a></li>
+                        }
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+                    </ul>
+
                 </div>
             </div>
         </nav>

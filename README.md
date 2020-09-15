@@ -1,4 +1,5 @@
 # MyVet
-Este Proyecto es de una veterinaria, fue un proyecto para mi materia de Sistemas Distribuidos. 
-La base de datos si no existe, la crea automaticamente.
-Esta hecho con .Net Core y la aplicación móvil con Xamarin
+Este Proyecto "veterinaria", fue un proyecto realizado para culminar la materia de Sistemas Distribuidos, durante el último semestre de mi carrera. 
+Se realizó con .Net Core y la aplicación móvil con Xamarin.
+Se usó Azure para alojar la aplicación. 
+
